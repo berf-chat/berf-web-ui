@@ -1,13 +1,32 @@
-import React from 'react';
+/* eslint-disable no-use-before-define */
+import React, { StrictMode } from 'react';
+
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+import { HashRouter } from 'react-router-dom';
+
+import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
 
+import { Web3ReactProvider } from '@web3-react/core';
+import { ExternalProvider, JsonRpcFetchFunc, Web3Provider } from '@ethersproject/providers';
+
+require('dotenv').config();
+
+function getLibrary(provider: ExternalProvider | JsonRpcFetchFunc): Web3Provider {
+  const library = new Web3Provider(provider);
+  library.pollingInterval = 12000;
+  return library;
+}
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <StrictMode>
+    <HashRouter>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <App />
+      </Web3ReactProvider>
+    </HashRouter>
+  </StrictMode>,
   document.getElementById('root')
 );
 
