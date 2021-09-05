@@ -10,8 +10,9 @@ import reportWebVitals from './reportWebVitals';
 
 import { Web3ReactProvider } from '@web3-react/core';
 import { ExternalProvider, JsonRpcFetchFunc, Web3Provider } from '@ethersproject/providers';
+import * as dotenv from 'dotenv';
 
-require('dotenv').config();
+dotenv.config();
 
 function getLibrary(provider: ExternalProvider | JsonRpcFetchFunc): Web3Provider {
   const library = new Web3Provider(provider);

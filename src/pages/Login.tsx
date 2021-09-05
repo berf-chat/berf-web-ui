@@ -5,6 +5,8 @@ import { Web3Provider } from '@ethersproject/providers';
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
+import { useHistory } from 'react-router-dom';
+
 const INFURA_ID = process.env.REACT_APP_FLEEK_KEY;
 const NETWORK_NAME = 'mainnet';
 
@@ -26,7 +28,7 @@ const web3Modal = new Web3Modal({
  */
 export default function Login() {
   const [injectedProvider, setInjectedProvider] = useState<Web3Provider>();
-  console.log(injectedProvider);
+  const history = useHistory();
 
   const modalButton = [];
 
@@ -37,9 +39,13 @@ export default function Login() {
     }, 1);
   };
 
+  console.log(injectedProvider);
+
   const loadWeb3Modal = useCallback(async () => {
     const provider = await web3Modal.connect();
     setInjectedProvider(new Web3Provider(provider));
+
+    history.push('/dash');
 
     provider.on('chainChanged', () => {
       setInjectedProvider(new Web3Provider(provider));
