@@ -26,7 +26,7 @@ const web3Modal = new Web3Modal({
 /**
  * Login component
  */
-export default function Login() {
+export default function Login(): JSX.Element {
   const [injectedProvider, setInjectedProvider] = useState<Web3Provider>();
   const history = useHistory();
 
