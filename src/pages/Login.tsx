@@ -45,7 +45,7 @@ export default function Login() {
     const provider = await web3Modal.connect();
     setInjectedProvider(new Web3Provider(provider));
 
-    history.push('/dash');
+    history.push('/dashboard');
 
     provider.on('chainChanged', () => {
       setInjectedProvider(new Web3Provider(provider));
