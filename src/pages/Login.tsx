@@ -26,7 +26,7 @@ const web3Modal = new Web3Modal({
 /**
  * Login component
  */
-export default function Login() {
+export default function Login(): JSX.Element {
   const [injectedProvider, setInjectedProvider] = useState<Web3Provider>();
   const history = useHistory();
 
@@ -45,7 +45,7 @@ export default function Login() {
     const provider = await web3Modal.connect();
     setInjectedProvider(new Web3Provider(provider));
 
-    history.push('/dash');
+    history.push('/dashboard');
 
     provider.on('chainChanged', () => {
       setInjectedProvider(new Web3Provider(provider));
